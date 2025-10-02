@@ -1,0 +1,13 @@
+# Ignore the progect executable
+philo
+
+# Ignore test files
+/tests/
+
+# Ignore objext files
+/objects/
+*.o
+
+# Ignore IDE configuration folders
+.vscode/
+.idea/
