@@ -1,17 +1,17 @@
 NAME       = philo
 
 CC         = cc
-CFLAGS     = -Wall -Wextra -Werror
+CFLAGS     = -Wall -Wextra -Werror -pthread
 
-INC		= -I ./includes/
+INC        = -Iincludes
 
-SRC_PATH = sources/
-OBJ_PATH = objects/
+SRC_PATH = sources
+OBJ_PATH = objects
 
 SRC_FILES = main.c parse.c
 
-SRCS = $(addprefix $(SRC_PATH) $(SRC))
-OBJS = $(addprefix $(OBJ_PATH),$(SRC_FILES:.c=.o))
+SRCS = $(addprefix $(SRC_PATH)/,$(SRC_FILES))
+OBJS = $(addprefix $(OBJ_PATH)/,$(SRC_FILES:.c=.o))
 
 .PHONY: all clean fclean re
 
@@ -25,11 +25,9 @@ $(OBJ_PATH)%.o: $(SRC_PATH)%.c
 	$(CC) $(CFLAGS) -c $< -o $@ $(INC)
 
 clean:
-	$(MAKE)
-	rm -f $(OBJS)
+	rm -rf $(OBJ_PATH)
 
 fclean: clean
-	$(MAKE)
-	rm -f $(NAME) lf
+	rm -f $(NAME)
 
 re: fclean all
